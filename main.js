@@ -1,13 +1,17 @@
-console.log('hello world');
+const {crawlPage} = require('./crawl.js')
 
-function normalizeURL(url) {
-    // function takes in a string and needs to be the same each time it is called with the same input
-    // 1. remove trailing slashes
-    // 2. remove http:// or https://
-    // 3. remove www.
-    // 4. remove everything after the first slash
-    // 5. remove trailing slashes
+function main() {
+    if (process.argv.length < 3) {
+        console.log('no website found')
+        process.exit(1)
+    }
+    else if (process.argv.length > 3) {
+        console.log('too many command line args')
+        process.exit(1)
+    }
+    const baseURL = process.argv[2]
+    console.log(`starting crawl of ${baseURL}`)
+    crawlPage(baseURL)
 }
 
-url = normalizeURL('http://blog.boot.dev/path')
-
+main()
